@@ -14,6 +14,8 @@
   --color-inactive-icon: #afb1b8;
   --color-bg-specialization: rgba(47, 48, 58, 0.8);
 
+  --color-modal-overlay: rgba(0, 0, 0, 0.2);
+
   /* Переменные цветов активности */
   --color-active: #2196f3;
   --color-active-button: #188ce8;
@@ -23,6 +25,8 @@
   --secondary-font: 'Raleway', sans-serif;
 
   /* ЭФФЕКТЫ */
+  --transition-time: 250ms;
+  --transition-function: cubic-bezier(0.4, 0, 0.2, 1);
 
   /* Тень для кнопок */
   --button-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.08),
@@ -157,6 +161,10 @@ img {
   background-color: var(--color-active);
 
   box-shadow: var(--button-shadow);
+
+  transition-property: color, background, box-shadow;
+  transition-duration: var(--transition-time);
+  transition-timing-function: var(--transition-function);
 }
 
 /* *Стили для меню */
@@ -170,6 +178,7 @@ img {
   letter-spacing: 0.02em;
   font-weight: 500;
 }
+
 .header-menu-item:not(:last-child),
 .header-contacts-item:not(:last-child) {
   margin-right: 50px;
@@ -183,10 +192,15 @@ img {
 
   color: var(--color-primary);
 }
+
 /* События меню */
 .header-menu-link:hover,
 .header-menu-link:focus {
   color: var(--color-active);
+
+  transition-property: color;
+  transition-duration: var(--transition-time);
+  transition-timing-function: var(--transition-function);
 }
 
 .header-menu-link.link-active {
@@ -194,7 +208,7 @@ img {
   position: relative;
 }
 
-.header-menu-link.link-active::before {
+.header-menu-link.link-active::after {
   content: '';
   position: absolute;
   width: 100%;
@@ -241,6 +255,10 @@ img {
 .email:hover,
 .email:focus {
   color: var(--color-active);
+
+  transition-property: color;
+  transition-duration: var(--transition-time);
+  transition-timing-function: var(--transition-function);
 }
 /* 
 .email-icon {
@@ -309,6 +327,10 @@ img {
 .hero-button:focus {
   background-color: var(--color-active-button);
   color: var(--color-white);
+
+  transition-property: color, background;
+  transition-duration: var(--transition-time);
+  transition-timing-function: var(--transition-function);
 }
 
 /* *Стили для "Особенности" */
@@ -474,6 +496,10 @@ img {
 .social-link:focus {
   background-color: var(--color-active);
   color: var(--color-white);
+
+  transition-property: color, background;
+  transition-duration: var(--transition-time);
+  transition-timing-function: var(--transition-function);
 }
 
 /* Стили для секции Клиенты */
@@ -501,6 +527,10 @@ img {
 .clients-link:focus {
   color: var(--color-active);
   border: 1px solid var(--color-active);
+
+  transition-property: color, border;
+  transition-duration: var(--transition-time);
+  transition-timing-function: var(--transition-function);
 }
 
 /* *Стили для Портфолио
@@ -535,6 +565,10 @@ img {
 .portfolio-link:focus {
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
     1px 4px 6px rgba(0, 0, 0, 0.16);
+
+  transition-property: box-shadow;
+  transition-duration: var(--transition-time);
+  transition-timing-function: var(--transition-function);
 }
 .card-content {
   padding: 20px 24px;
@@ -638,41 +672,54 @@ img {
 .footer-social-link:hover,
 .footer-social-link:focus {
   background-color: var(--color-active);
+
+  transition-property: background;
+  transition-duration: var(--transition-time);
+  transition-timing-function: var(--transition-function);
 }
 
-.cont {
-  /* !удалить */
-  outline: 1px solid tomato;
-  background-color: peachpuff;
-  height: 500px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
+/* Модальное окно */
+
+.back-drop {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+
+  top: 0;
+  left: 0;
+
+  background-color: var(--color-modal-overlay);
 }
 
-.cont .item {
-  /* !удалить */
-  outline: 1px solid red;
-  background-color: lightcyan;
-  padding: 20px;
+.back-drop.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.modal {
   position: absolute;
-}
+  width: 528px;
+  height: 581px;
 
-.item-1 {
-  z-index: 1;
-  top: 150px;
-  left: 650px;
-}
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 
-.item-2 {
-  z-index: 2;
-  top: 200px;
-  left: 700px;
+  background-color: var(--color-white);
+  border-radius: 4px;
 }
+.modal-button {
+  cursor: pointer;
+  position: absolute;
+  width: 30px;
+  height: 30px;
 
-.item-3 {
-  z-index: 1;
-  top: 250px;
-  left: 750px;
+  top: 8px;
+  right: 8px;
+
+  color: var(--color-primary);
+  background-color: var(--color-white);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
 }
