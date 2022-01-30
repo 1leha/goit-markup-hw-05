@@ -154,6 +154,10 @@ img {
   color: var(--color-primary);
 
   border-radius: 4px;
+
+  transition-property: color, background, box-shadow;
+  transition-duration: var(--transition-time);
+  transition-timing-function: var(--transition-function);
 }
 /* События кнопок */
 .button:hover,
@@ -162,10 +166,6 @@ img {
   background-color: var(--color-active);
 
   box-shadow: var(--button-shadow);
-
-  transition-property: color, background, box-shadow;
-  transition-duration: var(--transition-time);
-  transition-timing-function: var(--transition-function);
 }
 
 /* *Стили для меню */
@@ -192,16 +192,16 @@ img {
   padding-bottom: 32px;
 
   color: var(--color-primary);
+
+  transition-property: color;
+  transition-duration: var(--transition-time);
+  transition-timing-function: var(--transition-function);
 }
 
 /* События меню */
 .header-menu-link:hover,
 .header-menu-link:focus {
   color: var(--color-active);
-
-  transition-property: color;
-  transition-duration: var(--transition-time);
-  transition-timing-function: var(--transition-function);
 }
 
 .header-menu-link.link-active {
@@ -242,6 +242,10 @@ img {
   letter-spacing: 0.02em;
 
   color: var(--color-secondary);
+
+  transition-property: color;
+  transition-duration: var(--transition-time);
+  transition-timing-function: var(--transition-function);
 }
 
 .contacts-icon {
@@ -256,10 +260,6 @@ img {
 .email:hover,
 .email:focus {
   color: var(--color-active);
-
-  transition-property: color;
-  transition-duration: var(--transition-time);
-  transition-timing-function: var(--transition-function);
 }
 /* 
 .email-icon {
@@ -322,16 +322,16 @@ img {
   color: var(--color-white);
 
   border-radius: 4px;
+
+  transition-property: color, background;
+  transition-duration: var(--transition-time);
+  transition-timing-function: var(--transition-function);
 }
 
 .hero-button:hover,
 .hero-button:focus {
   background-color: var(--color-active-button);
   color: var(--color-white);
-
-  transition-property: color, background;
-  transition-duration: var(--transition-time);
-  transition-timing-function: var(--transition-function);
 }
 
 /* *Стили для "Особенности" */
@@ -491,16 +491,16 @@ img {
   color: var(--color-inactive-icon);
 
   border-radius: 50%;
+
+  transition-property: color, background;
+  transition-duration: var(--transition-time);
+  transition-timing-function: var(--transition-function);
 }
 
 .social-link:hover,
 .social-link:focus {
   background-color: var(--color-active);
   color: var(--color-white);
-
-  transition-property: color, background;
-  transition-duration: var(--transition-time);
-  transition-timing-function: var(--transition-function);
 }
 
 /* Стили для секции Клиенты */
@@ -715,48 +715,62 @@ img {
   color: var(--color-white);
 
   border-radius: 50%;
-}
-
-.footer-social-link:hover,
-.footer-social-link:focus {
-  background-color: var(--color-active);
 
   transition-property: background;
   transition-duration: var(--transition-time);
   transition-timing-function: var(--transition-function);
 }
 
+.footer-social-link:hover,
+.footer-social-link:focus {
+  background-color: var(--color-active);
+}
+
 /* Модальное окно */
 
-.back-drop {
+.backdrop {
   position: fixed;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 
   top: 0;
   left: 0;
 
   background-color: var(--color-modal-overlay);
+  transition-property: opacity, visibility;
+  transition-duration: var(--transition-time);
+  transition-timing-function: var(--transition-function);
 }
 
-.back-drop.is-hidden {
+.backdrop.is-hidden {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
 }
 
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(0.9);
+}
+
 .modal {
   position: absolute;
-  width: 528px;
-  height: 581px;
+  min-width: 528px;
+  min-height: 581px;
 
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(1);
 
   background-color: var(--color-white);
   border-radius: 4px;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+
+  transition-property: transform;
+  transition-duration: var(--transition-time);
+  transition-timing-function: var(--transition-function);
 }
+
 .modal-button {
   cursor: pointer;
   position: absolute;
